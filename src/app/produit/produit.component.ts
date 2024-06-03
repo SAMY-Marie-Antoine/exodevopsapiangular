@@ -9,8 +9,6 @@ import { ProduitHttpService } from './produit-http.service';
   styleUrl: './produit.component.css',
 })
 export class ProduitComponent {
-  recherche: string = '';
-
   produitForm?: Produit;
 
   constructor(
@@ -20,13 +18,8 @@ export class ProduitComponent {
 
   save() {
     if (this.produitForm) {
-      if (this.produitForm?.id) {
-        // modification
-        this.produitHttpService.update(this.produitForm);
-      } else {
-        // création
-        this.produitHttpService.create(this.produitForm);
-      }
+      // création
+      this.produitHttpService.create(this.produitForm);
     }
 
     this.produitForm = undefined;
@@ -34,10 +27,6 @@ export class ProduitComponent {
 
   list(): Array<Produit> {
     return this.produitHttpService.findAll();
-  }
-
-  search(rech: string) {
-    this.produitHttpService.loadByTitle(rech);
   }
 
   add() {

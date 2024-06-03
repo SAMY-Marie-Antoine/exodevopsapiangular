@@ -1,31 +1,16 @@
-<label class="form-label">Recherche : </label
-><input
-  type="text"
-  [ngModel]="recherche"
-  (ngModelChange)="search($event)"
-  class="form-control"
-/>
 <table class="table table-striped mt-3">
   <thead>
     <tr>
       <th>Id</th>
       <th>Nom</th>
-      <th>Prix ?</th>
-      <th></th>
+      <th>Prix</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let t of list()">
-      <td>{{ t.id }}</td>
-      <td>{{ t.nom }}</td>
-      <td>{{ t.Prix }}</td>
-      <td>
-        <div class="btn-group btn-group-sm">
-          <button [routerLink]="['/produit', t.id]" class="btn btn-primary">
-            <i class="bi bi-ticket-detailed"></i> [routerLink]
-          </button>
-        </div>
-      </td>
+    <tr *ngFor="let p of list()">
+      <td>{{ p.id }}</td>
+      <td>{{ p.nom }}</td>
+      <td>{{ p.prix }}</td>
     </tr>
   </tbody>
   <tfoot>
@@ -46,9 +31,12 @@
         />
       </td>
       <td>
+        <input type="text" [(ngModel)]="produitForm.nom" class="form-control" />
+      </td>
+      <td>
         <input
-          type="text"
-          [(ngModel)]="produitForm.title"
+          type="number"
+          [(ngModel)]="produitForm.prix"
           class="form-control"
         />
       </td>

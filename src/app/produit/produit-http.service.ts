@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class ProduitHttpService {
-  private todos: Produit[] = new Array<Produit>();
+  private produits: Produit[] = new Array<Produit>();
 
   constructor(private http: HttpClient) {
     this.load();
@@ -16,53 +16,21 @@ export class ProduitHttpService {
 
   load() {
     let obs: Observable<Produit[]> = this.http.get<Produit[]>(
-      environment.apiUrl + '/todo'
+      environment.apiUrl + '/produit'
     );
 
     obs.subscribe((resp) => {
-      this.todos = resp;
+      this.produits = resp;
     });
   }
 
-  loadByTitle(title: string) {
-    if (title) {
-      this.http
-        .get<Produit[]>(environment.apiUrl + '/todo/by-title/' + title)
-        .subscribe((resp) => {
-          this.todos = resp;
-        });
-    } else {
-      this.load();
-    }
-  }
-
   findAll(): Produit[] {
-    return this.todos;
+    return this.produits;
   }
 
-  findById(id?: number): Observable<Produit> {
-    return this.http.get<Produit>(environment.apiUrl + '/todo/' + id);
-  }
-
-  create(todo: Produit): void {
+  create(produit: Produit): void {
     this.http
-      .post<Produit>(environment.apiUrl + '/todo', todo)
-      .subscribe((resp) => {
-        this.load();
-      });
-  }
-
-  update(todo: Produit): void {
-    this.http
-      .put<Produit>(environment.apiUrl + '/todo/' + todo.id, todo)
-      .subscribe((resp) => {
-        this.load();
-      });
-  }
-
-  delete(id?: number): void {
-    this.http
-      .delete<void>(environment.apiUrl + '/todo/' + id)
+      .post<Produit>(environment.apiUrl + '/produit', produit)
       .subscribe((resp) => {
         this.load();
       });
