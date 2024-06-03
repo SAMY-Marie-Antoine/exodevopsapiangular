@@ -15,7 +15,7 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="4">
+      <td colspan="3">
         <button (click)="add()" class="btn btn-lg btn-success">
           <i class="bi bi-plus"></i>
         </button>
@@ -39,6 +39,13 @@
           [(ngModel)]="produitForm.prix"
           class="form-control"
         />
+      </td>
+      <td>
+        <div class="btn-group">
+          <button (click)="save()" class="btn btn-success">
+            <i class="bi bi-check-lg"></i>
+          </button>
+        </div>
       </td>
     </tr>
   </tfoot>

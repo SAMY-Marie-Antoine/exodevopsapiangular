@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl : "http://prod-angular:8080/api"
-}
+  apiUrl: 'http://20.56.153.68:8087/api',
+};
